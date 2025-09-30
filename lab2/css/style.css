@@ -1,0 +1,26 @@
+@font-face {
+    font-family: 'Gilroy';
+    src: url('path/to/gilroy-regular.woff2') format('woff2'),
+         url('path/to/gilroy-regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    /* outline: 4px solid green !important; */
+}
+
+body {
+
+    background-color: #fff;
+    font-family: 'Gilroy', sans-serif;
+    overflow-x: hidden;
+    width: 100%;
+}
+html {
+    scroll-behavior: smooth ;
+}

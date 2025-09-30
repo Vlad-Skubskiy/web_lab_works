@@ -1,0 +1,144 @@
+.trial {
+    display: flex;
+    border: 2px solid transparent;
+    max-width: 900px;
+    margin: 40px auto;
+    align-items: center;
+    border-radius: 20px;
+    background-color: #fff;
+    box-shadow: 0 1px 5px rgba(0,0,0,0.1);
+    padding: 20px;
+    flex-wrap: wrap;
+}
+
+.trial h1 {
+    font-family: 'Gilroy', sans-serif;
+    font-size: 25px;
+    font-weight: 700;
+    color: #222;
+    line-height: 1.4;
+    margin: 20px;
+    background-color: #fff;
+    text-align: center;
+}
+
+.trial_button {
+    padding-left: 120px;
+    background-color: #fff;
+}
+
+.trial_button a {
+    display: inline-block;
+    background-color: #26C296;
+    color: #fff;
+    text-decoration: none;
+    padding: 12px 40px;
+    border-radius: 31px;
+    font-weight: 500;
+    transition: background-color 0.3s;
+    white-space: nowrap;
+}
+
+.trial_button a:hover {
+    background-color: #21a47f;
+}
+
+.trial h1 .trial-sub {
+    font-family: 'Gilroy', sans-serif;
+    display: block;
+    font-size: 14px;
+    font-weight: 500;
+    color: #73738D;
+    background-color: #fff; 
+}
+
+@media (max-width: 320px) {
+    .trial {
+        padding: 0;
+        margin-top: 0;
+    }
+    .trial h1 {
+        font-size: 17px;
+        margin: 0px;
+        padding-top: 10px;
+    }
+    .trial h1 .trial-sub {
+        font-size: 10px
+    }
+    .trial_button {
+        padding-left: 25%;
+        padding-bottom: 10px;
+        
+    }
+    .trial-button a{
+        font-size: 10px;
+        padding: 5px 2px;
+    }
+}
+
+@media (min-width: 2560px) {
+    .trial {
+        display: flex;
+        border: 3px solid transparent;
+        max-width: 1600px;
+        margin: 80px auto;
+        align-items: center;
+        border-radius: 30px;
+        background-color: #fff;
+        box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+        padding: 40px;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
+    .trial h1 {
+        font-family: 'Gilroy', sans-serif;
+        font-size: 42px;
+        font-weight: 700;
+        color: #222;
+        line-height: 1.5;
+        margin: 30px;
+        background-color: #fff;
+        text-align: left;
+        flex: 2;
+        min-width: 600px;
+    }
+
+    .trial_button {
+        padding-left: 0;
+        background-color: #fff;
+        flex: 1;
+        text-align: right;
+        min-width: 300px;
+    }
+
+    .trial_button a {
+        display: inline-block;
+        background-color: #26C296;
+        color: #fff;
+        text-decoration: none;
+        padding: 25px 70px;
+        border-radius: 50px;
+        font-weight: 500;
+        font-size: 22px;
+        transition: all 0.3s ease;
+        white-space: nowrap;
+        border: 2px solid #26C296;
+    }
+
+    .trial_button a:hover {
+        background-color: #21a47f;
+        transform: translateY(-3px);
+        box-shadow: 0 10px 25px rgba(38, 194, 150, 0.3);
+    }
+
+    .trial h1 .trial-sub {
+        font-family: 'Gilroy', sans-serif;
+        display: block;
+        font-size: 22px;
+        font-weight: 500;
+        color: #73738D;
+        background-color: #fff;
+        margin-top: 15px;
+    }
+}

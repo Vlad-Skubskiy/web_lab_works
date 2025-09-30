@@ -1,0 +1,75 @@
+.styled-card {
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    padding: 30px;
+    width: 100%;
+    max-width: 400px;
+    font-family: 'Gilroy', sans-serif;
+    margin: 0 auto;
+}
+
+.card-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.card-header img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.card-info h2 {
+    font-size: 18px;
+    font-weight: 700;
+    color: #222;
+    margin: 0;
+}
+
+.card-role {
+    font-size: 14px;
+    font-weight: 400;
+    color: #73738D;
+    margin-top: 4px;
+}
+
+.card-details {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.detail-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 14px;
+    color: #73738D;
+    line-height: 1.4;
+}
+
+.detail-icon {
+    font-size: 16px;
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.card-details .detail-item img {
+    width: 18px;
+    height: 18px;
+    object-fit: contain;
+    border-radius: 0 !important;
+    margin-top: 2px;
+    flex-shrink: 0;
+}
+
+
+.card-info h2 {
+    font-size: 20px;
+    font-family: 'Gilroy', sans-serif;
+    font-weight: 400;
+}
