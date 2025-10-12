@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="style.css" />
+        <title>Lab-Work-3</title>
+    </head>
+    <body>
+        <header>
+            <div class="left">
+                <div class="logo">
+                    <p>My Zoo</p>
+                </div>
+                <div class="nav">
+                    <ul>
+                        <li><a href="index.html" class="active">My Animals</a></li>
+                        <li><a href="create.html">Create Animal</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="right">
+                <input
+                    type="text"
+                    class="smth-input"
+                    placeholder="Type something..."
+                />
+                <a href="#" class="Search-link">Search</a>
+                <button>Clear</button>
+            </div>
+        </header>
+
+<main class="main-container">
+    <aside class="sidebar">
+        <h2>Manage animals</h2>
+        <div class="sortbyExpense">
+            <p>Sort by the most expensive animals</p>
+            <label class="switch">
+                <input type="checkbox" id="sortToggle" />
+                <span class="slider"></span>
+            </label>
+        </div>
+        <div class="count-section">
+            <p>Count total daily expenses:</p>
+            <button id="countBtn">Count</button>
+            <p>Total expenses: <span id="total">$0</span></p>
+        </div>
+    </aside>
+
+    <section class="content">
+        <div id="animals-list" class="cards">
+        </div>
+    </section>
+</main>
+<script>
+let currentAnimals = [];
+
+document.addEventListener('DOMContentLoaded', function() {
+    loadAnimals();
+
+    document.getElementById('countBtn').addEventListener('click', calculateTotalExpenses);
+
+    document.getElementById('sortToggle').addEventListener('change', function() {
+        applyFilters(document.querySelector('.smth-input').value.trim().toLowerCase());
+    });
+
+    document.querySelector('.smth-input').addEventListener('input', function(e) {
+        applyFilters(e.target.value.trim().toLowerCase());
+    });
+
+});
+
+function loadAnimals() {
+    const animals = JSON.parse(localStorage.getItem('animals')) || [];
+    currentAnimals = animals;
+    displayAnimals(currentAnimals);
+}
+
+function applyFilters(searchTerm = '') {
+    let animals = JSON.parse(localStorage.getItem('animals')) || [];
+
+    if (searchTerm) {
+        animals = animals.filter(animal => animal.title.toLowerCase().includes(searchTerm));
+    }
+
+    const sortChecked = document.getElementById('sortToggle').checked;
+    if (sortChecked) {
+        animals.sort((a, b) => b.dailyExpense - a.dailyExpense);
+    }
+
+    currentAnimals = animals;
+    displayAnimals(currentAnimals);
+}
+
+function displayAnimals(animals) {
+    const animalsList = document.getElementById('animals-list');
+    animalsList.innerHTML = animals.map(animal => `
+        <div class="animal-card">
+            <h3>${animal.title}</h3>
+            <p class="description">${animal.description || 'No description available'}</p>
+            <div class="details">
+                <span class="expense">$${animal.dailyExpense.toFixed(2)}</span>
+                <span class="type ${animal.animalType}">${getAnimalTypeLabel(animal.animalType)}</span>
+            </div>
+        </div>
+    `).join('');
+}
+
+function calculateTotalExpenses() {
+    const total = currentAnimals.reduce((sum, animal) => sum + animal.dailyExpense, 0);
+    document.getElementById('total').textContent = `$${total.toFixed(2)}`;
+}
+
+function getAnimalTypeLabel(type) {
+    const labels = {
+        'mammal': 'Mammal',
+        'bird': 'Bird',
+        'reptile': 'Reptile',
+        'fish': 'Fish',
+        'other': 'Other'
+    };
+    return labels[type] || type;
+}
+
+</script>
+
+    </body>
+</html>
