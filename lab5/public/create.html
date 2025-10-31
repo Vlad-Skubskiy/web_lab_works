@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Додати тварину</title>
+    <link rel="stylesheet" href="css/create.css">
+    <link rel="stylesheet" href="css/header.css">
+</head>
+<body>
+    <header>
+            <div class="left">
+                <div class="logo">
+                    <p>My Zoo</p>
+                </div>
+                <div class="nav">
+                    <ul>
+                        <li><a href="index.html">My Animals</a></li>
+                        <li><a href="create.html" class="active">Create Animal</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="right">
+                <input
+                    type="text"
+                    class="smth-input"
+                    placeholder="Type something..."
+                />
+                <a href="#" class="Search-link">Search</a>
+                <button>Clear</button>
+            </div>
+        </header>
+    <div class="container">
+        <h1>Create animal</h1>
+        
+        <form id="animalForm">
+            <div class="form-group">
+                <label for="name">Title</label>
+                <input type="text" id="name" placeholder="Text...">
+            </div>
+
+            <div class="form-group">
+                <label for="description">Description</label>
+                <textarea id="description" placeholder="Опис тварини..."></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="dailyExpense">Daily expense ($)</label>
+                <div class="currency-input">
+                    <input type="number" id="dailyExpense" value="5" min="0" step="0.01">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="type">Animal Type</label>
+                <select id="type"> <option value="">Select Type</option>
+                    <option value="mammal">Mammal</option>
+                    <option value="bird">Bird</option>
+                    <option value="reptile">Reptile</option>
+                    <option value="fish">Fish</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+
+            <button type="submit" class="submit-btn">Submit</button>
+        </form>
+
+        <div class="alert" id="alertMessage" style="display: none;">
+            Oh snap! Change a few things up and try submitting again.
+        </div>
+    </div>
+
+    <script>
+document.getElementById('animalForm').addEventListener('submit', async function(e) {
+  e.preventDefault();
+
+  const name = document.getElementById('name').value.trim(); // Отримуємо ім'я
+  const description = document.getElementById('description').value.trim();
+  const dailyExpense = document.getElementById('dailyExpense').value;
+  const type = document.getElementById('type').value; 
+  const alertMessage = document.getElementById('alertMessage');
+
+  // Перевірка на обидва обов'язкові поля
+  if (!name || !type) { 
+    alertMessage.style.display = 'block';
+    return;
+  }
+
+  alertMessage.style.display = 'none';
+
+  const animal = {
+    name, // Відправляємо як 'name'
+    description,
+    dailyExpense: parseFloat(dailyExpense),
+    type,
+    createdAt: new Date().toISOString()
+  };
+
+  try {
+    const res = await fetch('http://localhost:3000/animals', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(animal)
+    });
+    
+    if (!res.ok) {
+        throw new Error(`HTTP error! status: ${res.status}`);
+    }
+
+    alert('✅ Тварину успішно створено!');
+    this.reset();
+  } catch (err) {
+    console.error('Помилка при збереженні:', err);
+    alert('❌ Помилка при збереженні даних.');
+  }
+});
+    </script>
+</body>
+</html>
